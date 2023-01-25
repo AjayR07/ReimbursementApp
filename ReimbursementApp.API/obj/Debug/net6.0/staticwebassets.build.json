@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "yr3NJr88kB7u2GekbXpn52ZFrkEt2pl7NY+RFIIrp7E=",
+  "Source": "ReimbursementApp.API",
+  "BasePath": "_content/ReimbursementApp.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

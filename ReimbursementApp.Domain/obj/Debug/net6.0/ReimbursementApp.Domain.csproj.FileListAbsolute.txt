@@ -1,0 +1,12 @@
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/bin/Debug/net6.0/ReimbursementApp.Domain.deps.json
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/bin/Debug/net6.0/ReimbursementApp.Domain.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/bin/Debug/net6.0/ReimbursementApp.Domain.pdb
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/ReimbursementApp.Domain.csproj.AssemblyReference.cache
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/ReimbursementApp.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/ReimbursementApp.Domain.AssemblyInfoInputs.cache
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/ReimbursementApp.Domain.AssemblyInfo.cs
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/ReimbursementApp.Domain.csproj.CoreCompileInputs.cache
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/ReimbursementApp.Domain.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/refint/ReimbursementApp.Domain.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/ReimbursementApp.Domain.pdb
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Domain/obj/Debug/net6.0/ref/ReimbursementApp.Domain.dll

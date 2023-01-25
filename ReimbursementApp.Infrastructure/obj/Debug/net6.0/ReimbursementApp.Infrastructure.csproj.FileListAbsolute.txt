@@ -1,0 +1,17 @@
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ReimbursementApp.Infrastructure.deps.json
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ReimbursementApp.Infrastructure.runtimeconfig.json
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ReimbursementApp.Infrastructure.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ReimbursementApp.Infrastructure.pdb
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.csproj.AssemblyReference.cache
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.AssemblyInfoInputs.cache
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.AssemblyInfo.cs
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.csproj.CoreCompileInputs.cache
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/refint/ReimbursementApp.Infrastructure.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.pdb
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.genruntimeconfig.cache
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ref/ReimbursementApp.Infrastructure.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ReimbursementApp.Domain.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ReimbursementApp.Domain.pdb
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.csproj.CopyComplete
