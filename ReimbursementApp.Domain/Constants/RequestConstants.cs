@@ -7,4 +7,5 @@ public static class RequestConstants
     public const string PendingRequestsFetched = "Pending Reimbursement Requests fetched Successfully";
     public const string AdminAcknowledged = "Admin Acknowledgement Updated Successfully";
     public const string ManagerAcknowledged = "Manager Acknowledgement Updated Successfully";
+    public const string RequestNotFound = "Request Not Found";
 }

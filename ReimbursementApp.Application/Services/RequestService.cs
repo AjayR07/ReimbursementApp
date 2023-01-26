@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ReimbursementApp.Application.DTOs;
+using ReimbursementApp.Application.Exceptions;
 using ReimbursementApp.Application.Interfaces;
 using ReimbursementApp.Domain.Constants;
 using ReimbursementApp.Domain.Enums;
@@ -64,6 +65,8 @@ public class RequestService: IRequestService
         var request = await _reimbursementRequestRepository.Get(id);
         if(int.Parse(_httpContext.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier))!= request.EmployeeId && _httpContext.HttpContext.User.IsInRole(Role.Employee.ToString())) 
             throw new UnauthorizedAccessException(AuthenticationConstants.UnAuthorized);
+        if (request == null)
+            throw new NotFoundException(RequestConstants.RequestNotFound);
         return request;
     }
 
