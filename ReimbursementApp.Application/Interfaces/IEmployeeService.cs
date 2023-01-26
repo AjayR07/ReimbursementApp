@@ -4,13 +4,13 @@ namespace ReimbursementApp.Application.Interfaces;
 
 public interface IEmployeeService
 {
-    IEnumerable<Employee> GetAllEmployees();
+    Task<IEnumerable<Employee>> GetAllEmployees();
 
-    Employee? GetEmployeeById(int id);
+    Task<Employee?> GetEmployeeById(int id);
 
-    Employee AddNewEmployee(Employee employee);
+    Task<Employee> AddNewEmployee(Employee employee);
 
-    void RemoveEmployee(int id);
-
-    void UpdateEmployee(Employee employee);
+    Task<Employee?> UpdateEmployee(Employee employee);
+    
+    Task RemoveEmployee(int id);
 }

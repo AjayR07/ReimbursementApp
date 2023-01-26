@@ -7,10 +7,7 @@ public class ReimbursementRequestDtoValidator: AbstractValidator<ReimbursementRe
 {
     public ReimbursementRequestDtoValidator()
     {
-        RuleFor(request => request.EmployeeId).NotNull().WithMessage("Employee Id is mandatory");
-        RuleFor(request => request.BillUrl).NotNull().WithMessage("Bill Url is Mandatory");
+        RuleFor(request => request.Bill).NotNull().WithMessage("Bill is mandatory for filing a request");
         RuleFor(request => request.Description).NotNull().WithMessage("Description is required");
-        RuleFor(request => request.AdminApprovalStatus).IsInEnum();
-        RuleFor(request => request.ManagerApprovalStatus).IsInEnum();
     }
 }

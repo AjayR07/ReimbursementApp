@@ -4,5 +4,5 @@ namespace ReimbursementApp.Application.Interfaces;
 
 public interface ILoginService
 {
-    Token Authenticate(Login login);
+    Task<Token> Authenticate(Login login);
 }

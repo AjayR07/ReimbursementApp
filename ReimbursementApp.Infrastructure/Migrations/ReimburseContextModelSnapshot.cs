@@ -86,11 +86,11 @@ namespace ReimbursementApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ManagerApprovalStatus")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<DateTime>("RequestDate")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

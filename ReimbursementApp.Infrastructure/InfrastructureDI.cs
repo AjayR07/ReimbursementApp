@@ -14,11 +14,11 @@ public static class InfrastructureDI
             {
                 opt.UseSqlServer(configuration.GetConnectionString("SSMS"),
                     b => b.MigrationsAssembly(typeof(ReimburseContext).Assembly.FullName));
-                opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-            }, 
-            ServiceLifetime.Transient);
+            },ServiceLifetime.Transient);
+        services.AddScoped<IAzureStorage, AzureStorage>();
         services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         services.AddScoped<IReimbursementRequestRepository, ReimbursementRequestRepository>();
+        services.AddScoped<IServiceBus, ServiceBus>();
         return services;
     }
 }

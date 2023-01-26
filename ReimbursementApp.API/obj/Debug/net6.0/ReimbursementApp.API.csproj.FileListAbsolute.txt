@@ -95,3 +95,9 @@
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/FluentValidation.AspNetCore.dll
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/FluentValidation.DependencyInjectionExtensions.dll
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Azure.Storage.Blobs.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Azure.Storage.Common.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/System.IO.Hashing.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Azure.Core.Amqp.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Azure.Messaging.ServiceBus.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Microsoft.Azure.Amqp.dll

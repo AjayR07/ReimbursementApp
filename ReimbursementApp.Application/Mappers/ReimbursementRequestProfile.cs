@@ -8,6 +8,6 @@ public class ReimbursementRequestProfile: Profile
 {
     public ReimbursementRequestProfile()
     {
-        CreateMap<ReimbursementRequest, ReimbursementRequestDto>().ReverseMap();
+        CreateMap<ReimbursementRequest, ReimbursementResponeDto>().ForMember(dest => dest.Id, src => src.MapFrom(source => source.Id));
     }
 }

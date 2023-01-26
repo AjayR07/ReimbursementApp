@@ -2,13 +2,13 @@ namespace ReimbursementApp.Infrastructure.Interfaces;
 
 public interface IGenericRepository<T> where T: class
 {
-    IEnumerable<T> GetAll();
+    Task<IEnumerable<T>> GetAll();
 
-    T? Get(int id);
+    Task<T?> Get(int id);
 
-    T Add(T entity);
+    Task<T> Add(T entity);
 
-    void Delete(T entity);
-
-    T Update(T entity);
+    Task<T> Update(T entity);
+    
+    Task Delete(T entity);
 }

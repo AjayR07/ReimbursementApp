@@ -1,15 +1,18 @@
-using System.Text.Json.Nodes;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ReimbursementApp.API.Utils;
+using Microsoft.OpenApi.Extensions;
+using ReimbursementApp.API.Configurations;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Interfaces;
 using ReimbursementApp.Domain.Constants;
+using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
 
 namespace ReimbursementApp.API.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/employee")]
 public class EmployeeController:ControllerBase
 {
@@ -21,53 +24,54 @@ public class EmployeeController:ControllerBase
         _mapper = mapper;
         _employeeService = employeeService;
     }
+    
     [HttpGet]
     [Route("all")]
-    public ActionResult<List<EmployeeResponseDto>> ListAllEmployees()
+    [AuthorizeRoles( Role.Admin,Role.Manager )]
+    public async Task<ActionResult> ListAllEmployees()
     {
-        var employees = _employeeService.GetAllEmployees();
+        var employees = await _employeeService.GetAllEmployees();
         var result = employees.Select(employee => _mapper.Map<EmployeeResponseDto>(employee));
         
-        var response = ApiResponseHandler.OkResponse(EmployeeConstants.EmployeesFetched, result);
-        return Ok(response);
+        var response = new { message=EmployeeConstants.EmployeesFetched, result =result};
+        return new OkObjectResult(response);
     }
     
     
     [HttpGet]
-    public ActionResult<EmployeeResponseDto> GetEmployee(int id)
+    public async Task<ActionResult> GetEmployee(int id)
     {
-        var employee = _employeeService.GetEmployeeById(id);
+        var employee = await _employeeService.GetEmployeeById(id);
         var result = _mapper.Map<EmployeeResponseDto>(employee);
-        var response = ApiResponseHandler.OkResponse(EmployeeConstants.EmployeeFetched, result);
-        return Ok(response);
+        
+        return new OkObjectResult(new { message = EmployeeConstants.EmployeeFetched, result = result });
     }
     
     [HttpPost]
-    public ActionResult AddEmployee(EmployeeDto employee)
+    [AuthorizeRoles(Role.Admin)]
+    public async Task<ActionResult> AddEmployee(EmployeeDto employee)
     {
-        var addedEmployee = _employeeService.AddNewEmployee(_mapper.Map<Employee>(employee));
+        var addedEmployee = await _employeeService.AddNewEmployee(_mapper.Map<Employee>(employee));
 
-        var response = ApiResponseHandler.OkResponse(EmployeeConstants.EmployeeAdded,
-            _mapper.Map<EmployeeResponseDto>(addedEmployee));
-        return Ok(response);
+    
+        var response = new { message=EmployeeConstants.EmployeeAdded, result = _mapper.Map<EmployeeResponseDto>(addedEmployee)};
+        return new OkObjectResult(response);
     }
     
+    [HttpPut]
+    public async Task<ActionResult> UpdateEmployee(EmployeeUpdateRequestDto employee)
+    {
+        var result = await _employeeService.UpdateEmployee(_mapper.Map<Employee>(employee));
+        var response = new
+            { message = EmployeeConstants.EmployeeUpdated, result = _mapper.Map<EmployeeResponseDto>(result) };
+        return new OkObjectResult(response);
+    }
     
     [HttpDelete]
-    public ActionResult TerminateEmployee(int id)
+    [AuthorizeRoles(Role.Admin)]
+    public async Task<ActionResult> TerminateEmployee(int id)
     {
-        _employeeService.RemoveEmployee(id);
-        var response = ApiResponseHandler.OkResponse(EmployeeConstants.EmployeeDeleted);
-        return Ok(response);
+         await _employeeService.RemoveEmployee(id);
+         return Ok(EmployeeConstants.EmployeeDeleted);
     }
-
-    [HttpPut]
-    public ActionResult UpdateEmployee(EmployeeUpdateRequestDto employee)
-    {
-        _employeeService.UpdateEmployee(_mapper.Map<Employee>(employee));
-        var response = ApiResponseHandler.OkResponse(EmployeeConstants.EmployeeUpdated);
-        return Ok(response);
-    }
-    
-
 }

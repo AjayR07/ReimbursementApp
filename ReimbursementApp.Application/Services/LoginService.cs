@@ -1,13 +1,16 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using ReimbursementApp.Application.Exceptions;
 using ReimbursementApp.Application.Interfaces;
+using ReimbursementApp.Domain.Constants;
 using ReimbursementApp.Domain.Models;
 using ReimbursementApp.Infrastructure.Interfaces;
-
+using NotFoundException = ReimbursementApp.Application.Exceptions.NotFoundException;
 namespace ReimbursementApp.Application.Services;
 
 public class LoginService:ILoginService
@@ -15,14 +18,16 @@ public class LoginService:ILoginService
  private readonly IEmployeeRepository _employeeRepository;
     private readonly IConfiguration _configuration;
     private readonly IMemoryCache _memoryCache;
+    private readonly IMapper _mapper;
 
-    public LoginService(IEmployeeRepository employeeRepository,IConfiguration configuration, IMemoryCache memoryCache)
+    public LoginService(IEmployeeRepository employeeRepository,IConfiguration configuration, IMemoryCache memoryCache,IMapper mapper)
     {
         _employeeRepository = employeeRepository;
         _configuration = configuration;
         _memoryCache = memoryCache;
+        _mapper = mapper;
     }
-    public Token Authenticate(Login login)
+    public async Task<Token> Authenticate(Login login)
     {
  
         var cacheOutput = _memoryCache.Get<LoginCache>(login.EmployeeId);
@@ -34,7 +39,7 @@ public class LoginService:ILoginService
             }
         }
             
-        var employee = _employeeRepository.Get(login.EmployeeId);
+        var employee =await _employeeRepository.Get(login.EmployeeId);
         if (employee != null)
         {
             if (BCrypt.Net.BCrypt.Verify(login.Password, employee.Password))
@@ -50,7 +55,7 @@ public class LoginService:ILoginService
                 };
                 
                 // Set cache options
-                var cacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(int.Parse(_configuration["JWT:Duration"])));
+                var cacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(int.Parse(_configuration["JWT:Expiry"])));
                 // Set object in cache
                 _memoryCache.Set(login.EmployeeId,cache);
                 return cache.Token;
@@ -58,13 +63,12 @@ public class LoginService:ILoginService
             else
             {
                 // throw Invalid password
-                return null;
+                throw new PasswordMismatchException(EmployeeConstants.EmployeePasswordMismatch);
             }
         }
         else
         {
-            //throw Invalid Employee ID
-            return null;
+            throw new NotFoundException(EmployeeConstants.EmployeeNotFound);
         }
       
     }
@@ -78,9 +82,13 @@ public class LoginService:ILoginService
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new Claim(ClaimTypes.Name, employee.Name)
+                new Claim(ClaimTypes.NameIdentifier, employee.Id.ToString()),
+                new Claim(ClaimTypes.Name, employee.Name),
+                new Claim(ClaimTypes.Email, employee.Email),
+                new Claim(ClaimTypes.Role, employee.Role.ToString()),
+               
             }),
-            Expires = DateTime.UtcNow.AddMinutes(int.Parse(_configuration["JWT:Duration"])),
+            Expires = DateTime.UtcNow.AddMinutes(int.Parse(_configuration["JWT:Expiry"])),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);

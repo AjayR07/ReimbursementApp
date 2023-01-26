@@ -7,10 +7,6 @@ namespace ReimbursementApp.Infrastructure;
 
 public class ReimburseContext:DbContext, IReimburseContext
 {
-    public ReimburseContext():base()
-    {
-        
-    }
     public ReimburseContext(DbContextOptions<ReimburseContext> options):base(options)
     {
         
@@ -29,6 +25,7 @@ public class ReimburseContext:DbContext, IReimburseContext
         {
             entity.HasKey(prop => prop.Id);
             entity.Property(prop => prop.AdminApprovalStatus).HasDefaultValue(ApprovalStatus.WaitingForApproval);
+            entity.Property(prop => prop.ManagerApprovalStatus).HasDefaultValue(ApprovalStatus.WaitingForApproval);
         });
         base.OnModelCreating(modelBuilder);
     }

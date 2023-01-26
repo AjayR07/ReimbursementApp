@@ -3,6 +3,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using FluentValidation.AspNetCore;
 using ReimbursementApp.API;
+using ReimbursementApp.API.Configurations;
 using ReimbursementApp.Application;
 using ReimbursementApp.Application.Validators;
 using ReimbursementApp.Infrastructure;
@@ -39,6 +40,7 @@ builder.Services.AddPersistence(configuration);
 
 // Api DI
 builder.Services.AddJWT(configuration);
+builder.Services.AddHttpContextAccessor();
 
 // General Service Injections
 //Mapper
@@ -60,10 +62,16 @@ var app = builder.Build();
     app.UseSwaggerUI();
 // }
 
+app.AddGlobalErrorHandler();
+
 app.UseHttpsRedirection();
-app.UseAuthentication();
-app.UseAuthorization();
+
 app.UseCors("corsapp");
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

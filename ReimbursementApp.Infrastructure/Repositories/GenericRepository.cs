@@ -1,43 +1,47 @@
+using System.Dynamic;
+using Microsoft.EntityFrameworkCore;
 using ReimbursementApp.Infrastructure.Interfaces;
 
 namespace ReimbursementApp.Infrastructure.Repositories;
 
 public class GenericRepository<T>: IGenericRepository<T> where T: class
 {
-    private readonly ReimburseContext _context;
+    private readonly DbSet<T> _context;
+    private readonly ReimburseContext _dbContext;
 
     public GenericRepository(ReimburseContext context)
     {
-        _context = context;
+        _dbContext = context;
+        _context = context.Set<T>();
     }
 
-    public IEnumerable<T> GetAll()
+    public async Task<IEnumerable<T>> GetAll()
     {
-        return _context.Set<T>().ToList();
+        return await _context.ToListAsync();
     }
 
-    public T? Get(int id)
+    public async Task<T?> Get(int id)
     {
-        return _context.Set<T>().Find(id);
+        return await _context.FindAsync(id);
     }
 
-    public T Add(T entity)
+    public async Task<T> Add(T entity)
     {
-        _context.Set<T>().Add(entity);
-        _context.SaveChanges();
-        return entity;
+        var result = _context.Add(entity);
+        await _dbContext.SaveChangesAsync();
+        return result.Entity;
     }
 
-    public void Delete(T entity)
-    {
-        _context.Set<T>().Remove(entity);
-        _context.SaveChanges();
-    }
-
-    public T Update(T entity)
+    public async Task<T> Update(T entity)
     { 
-        _context.Set<T>().Update(entity);
-        _context.SaveChanges();
-        return entity;
+        var result = _context.Update(entity);
+        await _dbContext.SaveChangesAsync();
+        return result.Entity;
+    }
+    
+    public async Task Delete(T entity)
+    {
+        var result = _context.Remove(entity);
+        await _dbContext.SaveChangesAsync();
     }
 }

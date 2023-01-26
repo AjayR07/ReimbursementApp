@@ -18,10 +18,12 @@ public class LoginController: ControllerBase
         _mapper = mapper;
         _loginService = loginService;
     }
+    
     [HttpPost]
-    public ActionResult<TokenDto> Authenticate([FromBody] LoginDto loginDto)
+    public async Task<ActionResult<TokenDto>> Authenticate([FromBody] LoginDto loginDto)
     {
         var login = _mapper.Map<Login>(loginDto);
-        return Ok(_mapper.Map<TokenDto>(_loginService.Authenticate(login)));
+        var response = _mapper.Map<TokenDto>(await _loginService.Authenticate(login));
+        return Ok(response);
     }
 }

@@ -11,15 +11,14 @@ public class ReimbursementRequest
     
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
-    public int Id;
+    public int Id { get; set; }
     
     [Required]
     [ForeignKey("Employee")]
     public int EmployeeId { get; set; }
     
     public virtual Employee Employee { get; set; }
-    
-    [Timestamp]
+  
     public DateTime RequestDate { get; set; }
     
     [Required]
@@ -34,7 +33,11 @@ public class ReimbursementRequest
     public ApprovalStatus AdminApprovalStatus { get; set; }
     
     [AllowNull]
-    [DefaultValue(ApprovalStatus.WaitingForApproval)]
     public ApprovalStatus ManagerApprovalStatus { get; set; }
+
+    public override string ToString()
+    {
+        return $"{nameof(Id)}: {Id}, {nameof(EmployeeId)}: {EmployeeId}, {nameof(Employee)}: {Employee}, {nameof(RequestDate)}: {RequestDate}, {nameof(Description)}: {Description}, {nameof(BillUrl)}: {BillUrl}, {nameof(AdminApprovalStatus)}: {AdminApprovalStatus}, {nameof(ManagerApprovalStatus)}: {ManagerApprovalStatus}";
+    }
 }
  

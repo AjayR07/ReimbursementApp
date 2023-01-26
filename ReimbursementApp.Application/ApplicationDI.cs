@@ -11,6 +11,7 @@ public static class ApplicationDI
     {
         services.AddScoped<IEmployeeService, EmployeeService>();
         services.AddScoped<ILoginService, LoginService>();
+        services.AddScoped<IRequestService, RequestService>();
         return services;
     }
 }

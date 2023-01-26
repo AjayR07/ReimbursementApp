@@ -1,50 +1,69 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using ReimbursementApp.Application.Exceptions;
 using ReimbursementApp.Application.Interfaces;
+using ReimbursementApp.Domain.Constants;
+using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
 using ReimbursementApp.Infrastructure.Interfaces;
+using static ReimbursementApp.Domain.Constants.AuthenticationConstants;
+using UnauthorizedAccessException = ReimbursementApp.Application.Exceptions.UnauthorizedAccessException;
 
 namespace ReimbursementApp.Application.Services;
 
 public class EmployeeService: IEmployeeService
 {
     private readonly IEmployeeRepository _employeeRepository;
-    
-    public EmployeeService(IEmployeeRepository employeeRepository)
+    private readonly IHttpContextAccessor _httpContext;
+
+    public EmployeeService(IEmployeeRepository employeeRepository, IHttpContextAccessor httpContext)
     {
         _employeeRepository = employeeRepository;
-   
+        _httpContext = httpContext;
     }
-    public IEnumerable<Employee> GetAllEmployees()
+    public async Task<IEnumerable<Employee>> GetAllEmployees()
     {
-        return _employeeRepository.GetAll();
+        return await _employeeRepository.GetAll();
     }
 
-    public Employee? GetEmployeeById(int id)
+    public async Task<Employee?> GetEmployeeById(int id)
     {
-        return _employeeRepository.Get(id);
+        this.VerifyAccess(id);
+        var employee =  await _employeeRepository.Get(id);
+        if (employee == null)
+            throw new NotFoundException(EmployeeConstants.EmployeeNotFound);
+        return employee;
     }
 
-    public Employee AddNewEmployee(Employee employee)
+    public async Task<Employee> AddNewEmployee(Employee employee)
     {
         employee.Password = BCrypt.Net.BCrypt.HashPassword(employee.Password);
-        return _employeeRepository.Add(employee);
+        return await _employeeRepository.Add(employee);
     }
 
-    public void RemoveEmployee(int id)
+
+    public async Task<Employee?> UpdateEmployee(Employee updatedEmployee)
     {
-        var employee = GetEmployeeById(id);
-        if (employee != null)
-        {
-            _employeeRepository.Delete(employee);
-        }
+        this.VerifyAccess(updatedEmployee.Id);
+        var employee = await GetEmployeeById(updatedEmployee.Id);
+        updatedEmployee.Password = BCrypt.Net.BCrypt.Verify(updatedEmployee.Password, employee.Password)
+            ? employee.Password
+            : BCrypt.Net.BCrypt.HashPassword(updatedEmployee.Password);
+        return await _employeeRepository.Update(updatedEmployee);
+    }
+    
+    public async Task RemoveEmployee(int id)
+    {
+        var employee = await GetEmployeeById(id);
+        await _employeeRepository.Delete(employee);
     }
 
-    public void UpdateEmployee(Employee updatedEmployee)
+    private void VerifyAccess(int requestedId)
     {
-        var employee = GetEmployeeById(updatedEmployee.Id);
-        if (BCrypt.Net.BCrypt.Verify(updatedEmployee.Password, employee.Password))
-            updatedEmployee.Password = employee.Password;
-        else
-            updatedEmployee.Password =  BCrypt.Net.BCrypt.HashPassword(updatedEmployee.Password);
-        _employeeRepository.Update(updatedEmployee);
+        if (_httpContext.HttpContext == null)
+            throw new UnauthorizedAccessException(TokenInvalid);
+        var actualId = int.Parse(_httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+        if(actualId != requestedId && _httpContext.HttpContext.User.IsInRole(Role.Employee.ToString()))
+            throw new UnauthorizedAccessException(UnAuthorized);
     }
 }
