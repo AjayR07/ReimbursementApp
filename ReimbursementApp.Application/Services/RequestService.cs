@@ -83,6 +83,12 @@ public class RequestService: IRequestService
         request.AdminApprovalStatus = status;
         var result = await _reimbursementRequestRepository.Update(request); 
         await _serviceBus.RemoveMessageFromQueue(_configuration["AdminQueueName"],id);
+        var queueMessage = new
+        {
+            request = result,
+            receipient = "ajayofficial@outlook.in"
+        };
+        await _serviceBus.SendMessageAsync(queueMessage,_configuration["ManagerQueueName"]);
         return result;
     }
 
