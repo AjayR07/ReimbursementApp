@@ -9,7 +9,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 
-namespace ReimbursementSystem.EmailService;
+namespace ReimbursementApp.EmailService;
 
 public static class EmailSender
 {

@@ -31,9 +31,9 @@ public class EmployeeController:ControllerBase
     public async Task<ActionResult> ListAllEmployees()
     {
         var employees = await _employeeService.GetAllEmployees();
-        var result = employees.Select(employee => _mapper.Map<EmployeeResponseDto>(employee));
+        var result = employees.Select(employee => _mapper.Map<EmployeeResponseDto>(employee)).ToList<EmployeeResponseDto>();
         
-        var response = new { message=EmployeeConstants.EmployeesFetched, result =result};
+        var response = new ResponseDto(){ message=EmployeeConstants.EmployeesFetched, result =result};
         return new OkObjectResult(response);
     }
     
@@ -44,7 +44,7 @@ public class EmployeeController:ControllerBase
         var employee = await _employeeService.GetEmployeeById(id);
         var result = _mapper.Map<EmployeeResponseDto>(employee);
         
-        return new OkObjectResult(new { message = EmployeeConstants.EmployeeFetched, result = result });
+        return new OkObjectResult(new ResponseDto(){ message = EmployeeConstants.EmployeeFetched, result = result });
     }
     
     [HttpPost]
