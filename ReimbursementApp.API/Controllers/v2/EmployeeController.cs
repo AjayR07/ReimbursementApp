@@ -9,11 +9,12 @@ using ReimbursementApp.Domain.Constants;
 using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
 
-namespace ReimbursementApp.API.Controllers;
+namespace ReimbursementApp.API.Controllers.v2;
 
 [ApiController]
 [Authorize]
-[Route("api/employee")]
+[Route("[controller]")]
+[ApiVersion("2.0")]
 public class EmployeeController:ControllerBase
 {
     private readonly IMapper _mapper;

@@ -1,11 +1,10 @@
-using System.Net;
 using System.Security.Claims;
 using System.Text.Json;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using ReimbursementApp.API.Controllers;
+using ReimbursementApp.API.Controllers.v2;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Mappers;
 using ReimbursementApp.Application.Services;

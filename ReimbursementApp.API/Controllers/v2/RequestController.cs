@@ -2,15 +2,18 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ReimbursementApp.API.Configurations;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Interfaces;
 using ReimbursementApp.Domain.Constants;
+using ReimbursementApp.Domain.Enums;
 
-namespace ReimbursementApp.API.Controllers;
+namespace ReimbursementApp.API.Controllers.v2;
 
 [ApiController]
 [Authorize]
-[Route("api/request")]
+[Route("[controller]")]
+[ApiVersion("2.0")]
 public class RequestController: ControllerBase
 {
     private readonly IRequestService _requestService;
@@ -30,6 +33,18 @@ public class RequestController: ControllerBase
                 result = _mapper.Map<ReimbursementResponeDto>(request) };
         return new OkObjectResult(response);
     }
+    
+    [HttpGet]
+    public async Task<ActionResult> GetRequest(int id)
+    {
+        var request = await _requestService.GetRequest(id);
+        var response = new
+        {
+            message = RequestConstants.RequestsFetched,
+            result = _mapper.Map<ReimbursementResponeDto>(request)
+        };
+        return new OkObjectResult(response);
+    }
 
     [HttpGet]
     [Route("all")]
@@ -44,15 +59,34 @@ public class RequestController: ControllerBase
         return new OkObjectResult(response);
     }
     
+    
+    
     [HttpGet]
-    public async Task<ActionResult> GetRequest(int id)
+    [Route("pending")]
+    [AuthorizeRoles(Role.Manager, Role.Admin)]
+    public async Task<ActionResult> GetAllPendingRequests()
     {
-        var request = await _requestService.GetRequest(id);
+        var requests = await  _requestService.GetPendingRequests();
         var response = new
         {
-            message = RequestConstants.RequestsFetched,
+            message = RequestConstants.PendingRequestsFetched,
+            result = requests.Select(req => _mapper.Map<ReimbursementResponeDto>(req))
+        };
+        return new OkObjectResult(response);
+    }
+
+    [HttpPut]
+    [Route("acknowledge")]
+    [AuthorizeRoles(Role.Manager, Role.Admin)]
+    public async Task<ActionResult> ManagerAcknowledge(int RequestId, ApprovalStatus status)
+    {
+        var request = await _requestService.Acknowledge(RequestId,status);
+        var response = new
+        {
+            message = User.IsInRole(Role.Admin.ToString())?RequestConstants.AdminAcknowledged:RequestConstants.ManagerAcknowledged,
             result = _mapper.Map<ReimbursementResponeDto>(request)
         };
         return new OkObjectResult(response);
     }
+    
 }

@@ -4,10 +4,11 @@ using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Interfaces;
 using ReimbursementApp.Domain.Models;
 
-namespace ReimbursementApp.API.Controllers;
+namespace ReimbursementApp.API.Controllers.v2;
 
 [ApiController]
-[Route("api/authenticate")]
+[Route("[controller]")]
+[ApiVersion("2.0")]
 public class LoginController: ControllerBase
 {
     private readonly IMapper _mapper;
@@ -20,6 +21,7 @@ public class LoginController: ControllerBase
     }
     
     [HttpPost]
+    [MapToApiVersion("2.0")]
     public async Task<ActionResult<TokenDto>> Authenticate([FromBody] LoginDto loginDto)
     {
         var login = _mapper.Map<Login>(loginDto);

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ReimbursementApp.API.Controllers;
+using ReimbursementApp.API.Controllers.v2;
 
 namespace ReimbursementApp.Test;
 
@@ -17,7 +17,7 @@ public class HomeControllerTest
         // Assert
         Assert.IsType<OkObjectResult>(actionResult.Result);
         var result = actionResult.Result as OkObjectResult;
-        Assert.Equal("Welcome to Reimbursement System",result.Value);
+        Assert.Equal("Welcome to Reimbursement System V2.0",result.Value);
         
     }
 }

@@ -101,3 +101,5 @@
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Azure.Core.Amqp.dll
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Azure.Messaging.ServiceBus.dll
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Microsoft.Azure.Amqp.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.Versioning.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll

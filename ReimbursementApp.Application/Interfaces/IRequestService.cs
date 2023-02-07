@@ -12,9 +12,6 @@ public interface IRequestService
 
     Task<ReimbursementRequest> GetRequest(int id);
 
-    Task<List<ReimbursementRequest>> GetAdminApprovalPendingRequests();
-
-    Task<ReimbursementRequest> AdminAcknowlege(int id, ApprovalStatus status);
-    IEnumerable<ReimbursementRequest> GetManagerApprovalPendingRequests();
-    Task<ReimbursementRequest> ManagerAcknowlege(int requestId, ApprovalStatus status);
+    Task<List<ReimbursementRequest>> GetPendingRequests();
+    Task<ReimbursementRequest> Acknowledge(int id, ApprovalStatus status);
 }

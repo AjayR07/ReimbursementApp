@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1ZoXnh1LodQrVITTaS8pzGTFUoMTQgcFHXJwZYwMdrjX8reKO8g9W7u7kVdOqc2qjgLzt6YcUy+TZQp2oILk7w==",
+  "dgSpecHash": "InCOUt/MrRUzKo/ieF5wu0Ntj3BHh3Bk/gVlQzMN6bf6aX4Y/okzZZHqOt2/ijceJdd0dNBHlN+uGZM8ColvCA==",
   "success": true,
   "projectFilePath": "/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/ReimbursementApp.API.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,8 @@
     "/Users/ajay/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/ajay/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/6.0.13/microsoft.aspnetcore.authentication.jwtbearer.6.0.13.nupkg.sha512",
     "/Users/ajay/.nuget/packages/microsoft.aspnetcore.http.features/6.0.0-preview.4.21253.5/microsoft.aspnetcore.http.features.6.0.0-preview.4.21253.5.nupkg.sha512",
+    "/Users/ajay/.nuget/packages/microsoft.aspnetcore.mvc.versioning/5.0.0/microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
+    "/Users/ajay/.nuget/packages/microsoft.aspnetcore.mvc.versioning.apiexplorer/5.0.0/microsoft.aspnetcore.mvc.versioning.apiexplorer.5.0.0.nupkg.sha512",
     "/Users/ajay/.nuget/packages/microsoft.azure.amqp/2.6.1/microsoft.azure.amqp.2.6.1.nupkg.sha512",
     "/Users/ajay/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "/Users/ajay/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
