@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using ReimbursementApp.API.Configurations;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Interfaces;
-using ReimbursementApp.Domain.App_GlobalResources;
 using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
+using ReimbursementApp.Domain.Resources;
 
 namespace ReimbursementApp.API.Controllers.v2;
 

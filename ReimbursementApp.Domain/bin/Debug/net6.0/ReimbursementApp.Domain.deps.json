@@ -9,6 +9,11 @@
       "ReimbursementApp.Domain/1.0.0": {
         "runtime": {
           "ReimbursementApp.Domain.dll": {}
+        },
+        "resources": {
+          "ta-in/ReimbursementApp.Domain.resources.dll": {
+            "locale": "ta-in"
+          }
         }
       }
     }

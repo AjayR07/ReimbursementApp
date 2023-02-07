@@ -15,3 +15,4 @@
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ReimbursementApp.Domain.dll
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ReimbursementApp.Domain.pdb
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/obj/Debug/net6.0/ReimbursementApp.Infrastructure.csproj.CopyComplete
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.Infrastructure/bin/Debug/net6.0/ta-in/ReimbursementApp.Domain.resources.dll

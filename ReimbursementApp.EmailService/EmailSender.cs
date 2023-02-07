@@ -9,7 +9,7 @@ using Azure.Communication.Email.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
-using ReimbursementApp.Domain.App_GlobalResources;
+using ReimbursementApp.Domain.Resources;
 
 namespace ReimbursementApp.EmailService;
 

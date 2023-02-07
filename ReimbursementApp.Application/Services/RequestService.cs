@@ -5,9 +5,9 @@ using Microsoft.Extensions.Configuration;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Exceptions;
 using ReimbursementApp.Application.Interfaces;
-using ReimbursementApp.Domain.App_GlobalResources;
 using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
+using ReimbursementApp.Domain.Resources;
 using ReimbursementApp.Infrastructure.Interfaces;
 using UnauthorizedAccessException = ReimbursementApp.Application.Exceptions.UnauthorizedAccessException;
 
