@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Exceptions;
 using ReimbursementApp.Application.Interfaces;
-using ReimbursementApp.Domain.Constants;
+using ReimbursementApp.Domain.App_GlobalResources;
 using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
 using ReimbursementApp.Infrastructure.Interfaces;
@@ -32,15 +32,17 @@ public class RequestService: IRequestService
         _azureStorage = azureStorage;
         _serviceBus = serviceBus;
         _configuration = configuration;
+
     }
 
     public async Task<ReimbursementRequest> RaiseRequest(ReimbursementRequestDto request)
     {
         if (_httpContext.HttpContext == null)
-            throw new UnauthorizedAccessException(AuthenticationConstants.TokenInvalid);
+            throw new UnauthorizedAccessException(Resource.TokenInvalid);
         var bill = await _azureStorage.UploadAsync(request.Bill);
+       
         if (bill.Error || bill.Blob.Uri == null)
-            throw new Exception(AzureConstants.FileUploadFailed+" : "+ bill.Status);
+            throw new Exception(Resource.FileUploadFailed+" : "+ bill.Status);
         
         var req = new ReimbursementRequest
         {
@@ -64,9 +66,9 @@ public class RequestService: IRequestService
     {
         var request = await _reimbursementRequestRepository.Get(id);
         if(int.Parse(_httpContext.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier))!= request.EmployeeId && _httpContext.HttpContext.User.IsInRole(Role.Employee.ToString())) 
-            throw new UnauthorizedAccessException(AuthenticationConstants.UnAuthorized);
+            throw new UnauthorizedAccessException(Resource.UnAuthorized);
         if (request == null)
-            throw new NotFoundException(RequestConstants.RequestNotFound);
+            throw new NotFoundException(Resource.RequestNotFound);
         return request;
     }
 

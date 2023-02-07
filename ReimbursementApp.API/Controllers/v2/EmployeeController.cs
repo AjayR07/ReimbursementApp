@@ -1,11 +1,10 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.OpenApi.Extensions;
 using ReimbursementApp.API.Configurations;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Interfaces;
-using ReimbursementApp.Domain.Constants;
+using ReimbursementApp.Domain.App_GlobalResources;
 using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
 
@@ -34,7 +33,7 @@ public class EmployeeController:ControllerBase
         var employees = await _employeeService.GetAllEmployees();
         var result = employees.Select(employee => _mapper.Map<EmployeeResponseDto>(employee)).ToList<EmployeeResponseDto>();
         
-        var response = new ResponseDto(){ message=EmployeeConstants.EmployeesFetched, result =result};
+        var response = new ResponseDto{ message=Resource.EmployeesFetched, result =result};
         return new OkObjectResult(response);
     }
     
@@ -45,7 +44,7 @@ public class EmployeeController:ControllerBase
         var employee = await _employeeService.GetEmployeeById(id);
         var result = _mapper.Map<EmployeeResponseDto>(employee);
         
-        return new OkObjectResult(new ResponseDto(){ message = EmployeeConstants.EmployeeFetched, result = result });
+        return new OkObjectResult(new ResponseDto{ message = Resource.EmployeeFetched, result = result });
     }
     
     [HttpPost]
@@ -55,7 +54,7 @@ public class EmployeeController:ControllerBase
         var addedEmployee = await _employeeService.AddNewEmployee(_mapper.Map<Employee>(employee));
 
     
-        var response = new { message=EmployeeConstants.EmployeeAdded, result = _mapper.Map<EmployeeResponseDto>(addedEmployee)};
+        var response = new ResponseDto{ message=Resource.EmployeeAdded, result = _mapper.Map<EmployeeResponseDto>(addedEmployee)};
         return new OkObjectResult(response);
     }
     
@@ -63,8 +62,8 @@ public class EmployeeController:ControllerBase
     public async Task<ActionResult> UpdateEmployee(EmployeeUpdateRequestDto employee)
     {
         var result = await _employeeService.UpdateEmployee(_mapper.Map<Employee>(employee));
-        var response = new
-            { message = EmployeeConstants.EmployeeUpdated, result = _mapper.Map<EmployeeResponseDto>(result) };
+        var response = new ResponseDto
+            { message = Resource.EmployeeUpdated, result = _mapper.Map<EmployeeResponseDto>(result) };
         return new OkObjectResult(response);
     }
     
@@ -73,6 +72,6 @@ public class EmployeeController:ControllerBase
     public async Task<ActionResult> TerminateEmployee(int id)
     {
          await _employeeService.RemoveEmployee(id);
-         return Ok(EmployeeConstants.EmployeeDeleted);
+         return Ok(Resource.EmployeeDeleted);
     }
 }

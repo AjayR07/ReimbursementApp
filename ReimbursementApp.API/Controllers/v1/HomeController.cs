@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using ReimbursementApp.Domain.App_GlobalResources;
 
 namespace ReimbursementApp.API.Controllers.v1;
 [ApiController]
@@ -6,10 +7,11 @@ namespace ReimbursementApp.API.Controllers.v1;
 [ApiVersion("1.0")]
 public class HomeController : ControllerBase
 {
+
     [HttpGet]
     [MapToApiVersion("1.0")]
     public ActionResult<string> Get()
     {
-        return Ok("Welcome to Reimbursement System");
+        return Ok(Resource.WelcomeMessage);
     }
 }

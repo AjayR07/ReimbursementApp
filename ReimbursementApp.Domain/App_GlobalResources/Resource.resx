@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="WelcomeMessage" xml:space="preserve">
+        <value>Welcome to Reimbursement App V1.0</value>
+    </data>
+    <data name="FileUploadFailed" xml:space="preserve">
+        <value>Uploading File to Blob Storage Failed</value>
+    </data>
+    <data name="UnAuthorized" xml:space="preserve">
+        <value>You're not allowed to perform this action</value>
+    </data>
+    <data name="TokenInvalid" xml:space="preserve">
+        <value>Invalid Token sent</value>
+    </data>
+    <data name="RequestRaised" xml:space="preserve">
+        <value>Reimbursement Request raised successfully</value>
+    </data>
+    <data name="RequestsFetched" xml:space="preserve">
+        <value>Reimbursement Requests fetched Successfully</value>
+    </data>
+    <data name="PendingRequestsFetched" xml:space="preserve">
+        <value>Pending Reimbursement Requests fetched Successfully</value>
+    </data>
+    <data name="AdminAcknowledged" xml:space="preserve">
+        <value>Admin Acknowledgement Updated Successfully</value>
+    </data>
+    <data name="ManagerAcknowledged" xml:space="preserve">
+        <value>Manager Acknowledgement Updated Successfully</value>
+    </data>
+    <data name="RequestNotFound" xml:space="preserve">
+        <value>Request Not Found</value>
+    </data>
+    <data name="EmployeeAdded" xml:space="preserve">
+        <value>Employee Details Registered successfully</value>
+    </data>
+    <data name="EmployeeDeleted" xml:space="preserve">
+        <value>Employee Terminated successfully</value>
+    </data>
+    <data name="EmployeeFetched" xml:space="preserve">
+        <value>Employee Details Fetched successfully</value>
+    </data>
+    <data name="EmployeesFetched" xml:space="preserve">
+        <value>Employees Details Fetched successfully</value>
+    </data>
+    <data name="EmployeeUpdated" xml:space="preserve">
+        <value>Employee Details Updated successfully</value>
+    </data>
+    <data name="EmployeeNotFound" xml:space="preserve">
+        <value>Employee Id Not Found</value>
+    </data>
+    <data name="EmployeePasswordMismatch" xml:space="preserve">
+        <value>Incorrect Password</value>
+    </data>
+    <data name="EmailContent" xml:space="preserve">
+        <value>Welcome to Azure Communication Service Email APIs DotNet Integration World.</value>
+    </data>
+    <data name="EmailBody" xml:space="preserve">
+        <value>This email message is sent from Azure Communication Service Email using .NET SDK.</value>
+    </data>
+</root>

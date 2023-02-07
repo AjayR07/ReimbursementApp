@@ -2,11 +2,10 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using ReimbursementApp.Application.Exceptions;
 using ReimbursementApp.Application.Interfaces;
-using ReimbursementApp.Domain.Constants;
+using ReimbursementApp.Domain.App_GlobalResources;
 using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
 using ReimbursementApp.Infrastructure.Interfaces;
-using static ReimbursementApp.Domain.Constants.AuthenticationConstants;
 using UnauthorizedAccessException = ReimbursementApp.Application.Exceptions.UnauthorizedAccessException;
 
 namespace ReimbursementApp.Application.Services;
@@ -31,7 +30,7 @@ public class EmployeeService: IEmployeeService
         this.VerifyAccess(id);
         var employee =  await _employeeRepository.Get(id);
         if (employee == null)
-            throw new NotFoundException(EmployeeConstants.EmployeeNotFound);
+            throw new NotFoundException(Resource.EmployeeNotFound);
         return employee;
     }
 
@@ -61,9 +60,9 @@ public class EmployeeService: IEmployeeService
     private void VerifyAccess(int requestedId)
     {
         if (_httpContext.HttpContext == null)
-            throw new UnauthorizedAccessException(TokenInvalid);
+            throw new UnauthorizedAccessException(Resource.TokenInvalid);
         var actualId = int.Parse(_httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
         if(actualId != requestedId && _httpContext.HttpContext.User.IsInRole(Role.Employee.ToString()))
-            throw new UnauthorizedAccessException(UnAuthorized);
+            throw new UnauthorizedAccessException(Resource.UnAuthorized);
     }
 }

@@ -79,7 +79,7 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-System.Resources.ResourceManager RM = new System.Resources.ResourceManager("Resource",System.Reflection.Assembly.GetExecutingAssembly());
+
 
 var app = builder.Build();
 
