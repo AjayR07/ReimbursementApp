@@ -1,5 +1,3 @@
-using System.Reflection;
-using System.Resources;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
