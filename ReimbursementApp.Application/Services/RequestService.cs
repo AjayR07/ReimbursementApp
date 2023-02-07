@@ -70,39 +70,40 @@ public class RequestService: IRequestService
         return request;
     }
 
-    public async Task<List<ReimbursementRequest>> GetAdminApprovalPendingRequests()
+    public async Task<List<ReimbursementRequest>> GetPendingRequests()
     {
-        var messages =await _serviceBus.ReceiveMessagesAsync(_configuration["AdminQueueName"]);
-        return messages;
-
-    }
-
-    public async Task<ReimbursementRequest> AdminAcknowlege(int id, ApprovalStatus status)
-    {
-        var request = await this.GetRequest(id);
-        request.AdminApprovalStatus = status;
-        var result = await _reimbursementRequestRepository.Update(request); 
-        await _serviceBus.RemoveMessageFromQueue(_configuration["AdminQueueName"],id);
-        var queueMessage = new
+        if (_httpContext.HttpContext.User.IsInRole(Role.Admin.ToString()))
+            return await _serviceBus.ReceiveMessagesAsync(_configuration["AdminQueueName"]);
+        else
         {
-            request = result,
-            receipient = "ajayofficial@outlook.in"
-        };
-        await _serviceBus.SendMessageAsync(queueMessage,_configuration["ManagerQueueName"]);
-        return result;
+            var managerId = int.Parse(_httpContext.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier));
+            return _reimbursementRequestRepository.GetPendingManageeRequests(managerId).ToList();
+        }
     }
 
-    public IEnumerable<ReimbursementRequest> GetManagerApprovalPendingRequests()
+    public async Task<ReimbursementRequest> Acknowledge(int id, ApprovalStatus status)
     {
-        var managerId = int.Parse(_httpContext.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier));
-        return _reimbursementRequestRepository.GetPendingManageeRequests(managerId);
+        var request = await GetRequest(id);
+        ReimbursementRequest result;
+        if (_httpContext.HttpContext.User.IsInRole(Role.Manager.ToString()))
+        {
+            request.ManagerApprovalStatus = status;
+            result = await _reimbursementRequestRepository.Update(request); 
+        }
+        else
+        {
+            request.AdminApprovalStatus = status;
+            result = await _reimbursementRequestRepository.Update(request); 
+            await _serviceBus.RemoveMessageFromQueue(_configuration["AdminQueueName"],id);
+            var queueMessage = new
+            {
+                request = result,
+                receipient = "ajayofficial@outlook.in"
+            };
+            await _serviceBus.SendMessageAsync(queueMessage,_configuration["ManagerQueueName"]);
+        }
+        return result;
+   
     }
 
-    public async Task<ReimbursementRequest> ManagerAcknowlege(int id, ApprovalStatus status)
-    {
-        var request = await this.GetRequest(id);
-        request.ManagerApprovalStatus = status;
-        var result = await _reimbursementRequestRepository.Update(request); 
-        return result;
-    }
 }

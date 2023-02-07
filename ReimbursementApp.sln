@@ -8,7 +8,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReimbursementApp.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReimbursementApp.Domain", "ReimbursementApp.Domain\ReimbursementApp.Domain.csproj", "{AF3D486D-911D-4DDF-ACA7-8E7D9457AC18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReimbursementSystem.EmailService", "ReimbursementSystem.EmailService\ReimbursementSystem.EmailService.csproj", "{562726C4-CA21-4820-8269-BA700000A8DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReimbursementApp.EmailService", "ReimbursementApp.EmailService\ReimbursementApp.EmailService.csproj", "{562726C4-CA21-4820-8269-BA700000A8DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReimbursementApp.Test", "ReimbursementApp.Test\ReimbursementApp.Test.csproj", "{B4DEBDDA-89DD-4329-8D74-A431A56457B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +38,9 @@ Global
 		{562726C4-CA21-4820-8269-BA700000A8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{562726C4-CA21-4820-8269-BA700000A8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{562726C4-CA21-4820-8269-BA700000A8DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4DEBDDA-89DD-4329-8D74-A431A56457B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4DEBDDA-89DD-4329-8D74-A431A56457B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4DEBDDA-89DD-4329-8D74-A431A56457B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4DEBDDA-89DD-4329-8D74-A431A56457B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
