@@ -1,3 +1,4 @@
+using System.Globalization;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
@@ -80,7 +81,7 @@ builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
-
+builder.Services.AddLocalization(options => options.ResourcesPath = "../ReimbursementApp.Domain/Resources");
 var app = builder.Build();
 
 app.UsePathBase(new PathString("/api"));
@@ -104,6 +105,15 @@ var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionD
 app.AddGlobalErrorHandler();
 
 app.UseHttpsRedirection();
+var cultures = new List<CultureInfo> {
+    new CultureInfo("en-US"),
+    new CultureInfo("ta-IN")
+};
+app.UseRequestLocalization(options => {
+    options.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+    options.SupportedCultures = cultures;
+    options.SupportedUICultures = cultures;
+});
 
 app.UseCors("corsapp");
 

@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using ReimbursementApp.Domain.App_GlobalResources;
+using ReimbursementApp.Domain.Resources;
 
 namespace ReimbursementApp.API.Controllers.v1;
 [ApiController]

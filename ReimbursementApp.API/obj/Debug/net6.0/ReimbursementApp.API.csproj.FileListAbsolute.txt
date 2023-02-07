@@ -103,3 +103,4 @@
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Microsoft.Azure.Amqp.dll
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.Versioning.dll
 /Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer.dll
+/Users/ajay/Projects/DotNet/ReimbursementApp/ReimbursementApp.API/bin/Debug/net6.0/ta-in/ReimbursementApp.Domain.resources.dll

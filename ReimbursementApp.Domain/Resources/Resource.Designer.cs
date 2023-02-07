@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ReimbursementApp.Domain.App_GlobalResources {
+namespace ReimbursementApp.Domain.Resources {
     using System;
     
     
@@ -28,7 +28,7 @@ namespace ReimbursementApp.Domain.App_GlobalResources {
         public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("ReimbursementApp.Domain.App_GlobalResources.Resource", typeof(Resource).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("ReimbursementApp.Domain.Resources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

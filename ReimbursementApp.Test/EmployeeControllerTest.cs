@@ -8,9 +8,9 @@ using ReimbursementApp.API.Controllers.v2;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Mappers;
 using ReimbursementApp.Application.Services;
-using ReimbursementApp.Domain.App_GlobalResources;
 using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
+using ReimbursementApp.Domain.Resources;
 using ReimbursementApp.Infrastructure.Interfaces;
 using UnauthorizedAccessException = ReimbursementApp.Application.Exceptions.UnauthorizedAccessException;
 
