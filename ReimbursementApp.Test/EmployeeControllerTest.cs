@@ -8,7 +8,7 @@ using ReimbursementApp.API.Controllers.v2;
 using ReimbursementApp.Application.DTOs;
 using ReimbursementApp.Application.Mappers;
 using ReimbursementApp.Application.Services;
-using ReimbursementApp.Domain.Constants;
+using ReimbursementApp.Domain.App_GlobalResources;
 using ReimbursementApp.Domain.Enums;
 using ReimbursementApp.Domain.Models;
 using ReimbursementApp.Infrastructure.Interfaces;
@@ -55,7 +55,7 @@ public class EmployeeControllerTest
         var okObjectResult =actionResult as OkObjectResult;
         var actualResult =okObjectResult!.Value as ResponseDto;
         Assert.NotNull(actualResult);
-        Assert.Equal(EmployeeConstants.EmployeesFetched,actualResult!.message);
+        Assert.Equal(Resource.EmployeesFetched,actualResult!.message);
         Assert.Equal(JsonSerializer.Serialize( expectedResult),JsonSerializer.Serialize(actualResult.result));
         Assert.Equal(expectedResult,actualResult.result);
     }
@@ -80,7 +80,7 @@ public class EmployeeControllerTest
         var okObjectResult =actionResult as OkObjectResult;
         var actualResult =okObjectResult!.Value as ResponseDto;
         Assert.NotNull(actualResult);
-        Assert.Equal(EmployeeConstants.EmployeeFetched,actualResult!.message);
+        Assert.Equal(Resource.EmployeeFetched,actualResult!.message);
         Assert.Equal(expectedResult,actualResult.result);
         
     }

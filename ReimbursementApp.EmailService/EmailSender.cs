@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
 using Azure;
@@ -8,6 +9,7 @@ using Azure.Communication.Email.Models;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
+using ReimbursementApp.Domain.App_GlobalResources;
 
 namespace ReimbursementApp.EmailService;
 
@@ -22,8 +24,8 @@ public static class EmailSender
         
         //Replace with your domain and modify the content, recipient details as required
 
-        EmailContent emailContent = new EmailContent("Welcome to Azure Communication Service Email APIs DotNet Integration World.");
-        emailContent.PlainText = "This email message is sent from Azure Communication Service Email using .NET SDK.";
+        EmailContent emailContent = new EmailContent(Resource.EmailContent);
+        emailContent.PlainText = Resource.EmailBody;
         List<EmailAddress> emailAddresses = new List<EmailAddress> { new EmailAddress("ajayofficial@outlook.in") { DisplayName = "Ajay Thiyo" }};
         EmailRecipients emailRecipients = new EmailRecipients(emailAddresses);
         EmailMessage emailMessage = new EmailMessage("DoNotReply@fd922f48-f26f-4cd1-ab41-d13ff8b94bb6.azurecomm.net", emailContent, emailRecipients);

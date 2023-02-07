@@ -17,4 +17,7 @@
             <CopyToPublishDirectory>Never</CopyToPublishDirectory>
         </None>
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ReimbursementApp.Domain\ReimbursementApp.Domain.csproj" />
+    </ItemGroup>
 </Project>

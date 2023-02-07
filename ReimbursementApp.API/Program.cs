@@ -1,3 +1,5 @@
+using System.Reflection;
+using System.Resources;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
@@ -79,7 +81,7 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
-System.Resources.ResourceManager RM = new System.Resources.ResourceManager("Resource",System.Reflection.Assembly.GetExecutingAssembly());
+
 
 var app = builder.Build();
 

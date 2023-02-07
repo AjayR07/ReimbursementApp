@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ReimbursementApp.Application.Exceptions;
 using ReimbursementApp.Application.Interfaces;
-using ReimbursementApp.Domain.Constants;
+using ReimbursementApp.Domain.App_GlobalResources;
 using ReimbursementApp.Domain.Models;
 using ReimbursementApp.Infrastructure.Interfaces;
 using NotFoundException = ReimbursementApp.Application.Exceptions.NotFoundException;
@@ -63,12 +63,12 @@ public class LoginService:ILoginService
             else
             {
                 // throw Invalid password
-                throw new PasswordMismatchException(EmployeeConstants.EmployeePasswordMismatch);
+                throw new PasswordMismatchException(Resource.EmployeePasswordMismatch);
             }
         }
         else
         {
-            throw new NotFoundException(EmployeeConstants.EmployeeNotFound);
+            throw new NotFoundException(Resource.EmployeeNotFound);
         }
       
     }
